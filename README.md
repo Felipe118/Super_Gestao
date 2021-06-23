@@ -9,3 +9,8 @@
 
 ## Super Gestão 
  Um sistema simples feito em PHP utilizando o framework Laravel.
+
+ ## Status
+ <h4 align="center"> 
+	🚧  Super Gestão 🚀 Em construção...  🚧
+</h4>
