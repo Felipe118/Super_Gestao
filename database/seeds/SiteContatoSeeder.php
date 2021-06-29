@@ -12,7 +12,7 @@ class SiteContatoSeeder extends Seeder
      */
     public function run()
     {
-        /*
+        
         $contato = new SiteContato();
         $contato->nome="Sistema SG";
         $contato->telefone = "619999999";
@@ -20,7 +20,7 @@ class SiteContatoSeeder extends Seeder
         $contato->motivo_contato  = "1";
         $contato->mensagem  = "Seja bem vindo ao sistema SG";
         $contato->save();
-        */
+       
         factory(SiteContato::class,100)->create();
     }
 }
