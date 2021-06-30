@@ -13,10 +13,14 @@ class AutenticacaoMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $metodo_autenticacao,$perfil)
     {
         //eturn $next($request);
-        if(true){
+       echo $metodo_autenticacao.' _ ' .$perfil.'<br>';
+        if($metodo_autenticacao == 'padrao'){
+            echo 'Verificando o usuário e senha no banco de dados <br>';
+        }
+        if(false){
             return $next($request);
         }else{
                 return Response('Acesso negado! Rota exige autenticação!');
