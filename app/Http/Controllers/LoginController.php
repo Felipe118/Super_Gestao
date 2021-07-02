@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
-    public function index() {
-        return view('site.login', ['titulo' => 'Login']);
+    public function index(Request $request) {
+        $erro = ''; 
+        if($request->get('erro') == 1){
+            $erro = 'Usuario ou Senha Inválidos';
+
+        }
+        if($request->get('erro') == 2){
+            $erro = 'Necessário realizar login para ter acesso a página!';
+
+        }
+
+        return view('site.login', ['titulo' => 'Login','erro' =>$erro]);
     }
     public function autenticar(Request $request){
         //regras validação
 
-        $regras = [
+        $regras = [ 
             'usuario' => 'email',
             'senha' => 'required'
         ];
@@ -23,6 +34,28 @@ class LoginController extends Controller
         ];
 
         $request->validate($regras, $feedback );
-        print_r($request->all());
+
+        $email = $request->get('usuario');
+        $password = $request->get('senha');
+
+        
+        
+
+        //Iniciar um Model Users
+        $user = new User();
+
+        $usuario = $user->where('email',$email)->where('password', $password)->get()->first();
+        
+        if(isset($usuario->name)){
+           session_start();
+           $_SESSION['nome'] = $usuario->name;
+           $_SESSION['email'] = $usuario->email;
+
+           return redirect()->route('app.clientes');
+        }else{
+            return redirect()->route('site.login',['erro' => 1]);
+        }
+        //$existe = $existe;
+        
     }
 }
