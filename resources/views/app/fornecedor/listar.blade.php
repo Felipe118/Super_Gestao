@@ -46,6 +46,8 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                    {{ $fornecedores-> }}
              
             </div>
 
