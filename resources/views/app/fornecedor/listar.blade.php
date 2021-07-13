@@ -43,11 +43,11 @@
                               <td>Excluir</td>
                               <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
                             </tr>
-                        @endforeach
+                        @endforeach 
                     </tbody>
-                </table>
+                </table> 
 
-                    {{ $fornecedores-> }}
+                    {{ $fornecedores->appends($request)->links() }}
              
             </div>
 
