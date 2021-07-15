@@ -22,19 +22,19 @@
         <div class="informacao-pagina">
             
             <div style="width:30%; margin-left:auto; margin-right:auto;">
-                <form action="" method="POST">
+                <form action="{{ route('produto.store') }}" method="POST">
                     @csrf
 
-                    <input type="hidden" name="id" value="">
+                    
 
-                    <input type="text" name="nome" placeholder="Nome"  value="" class="borda-preta" id="">
-                   
+                    <input type="text" name="nome" placeholder="Nome"  value="{{ old('nome') }}" class="borda-preta" id="">
+                    {{$errors->has('nome') ? $errors->first('nome') : ''}}
                     
-                    <input type="text" name="descricao" placeholder="Descrição" value="" class="borda-preta" id="">
+                    <input type="text" name="descricao" placeholder="Descrição" value="{{ old('descricao') }}" class="borda-preta" id="">
+                    {{$errors->has('descricao') ? $errors->first('descricao') : ''}}
                     
-                    
-                    <input type="text" name="peso" value="" placeholder="peso"  class="borda-preta" id="">
-                    
+                    <input type="text" name="peso" value="{{ old('peso') }}" placeholder="peso"  class="borda-preta" id="">
+                    {{$errors->has('peso') ? $errors->first('peso') : ''}}
                     <select name="unidade_id" >
                         <option>-- Selecione a unidade de medida --</option>
 
@@ -42,8 +42,9 @@
                             
                         @endforeach
                        
-                        <option value="{{$unidade->id}}">{{$unidade->descricao}}</option>
+                        <option value="{{$unidade->id}} {{ old('unidade_id') == $unidade->id ? 'selected' : ''}}">{{$unidade->descricao}}</option>
                     </select>
+                    {{$errors->has('unidade_id') ? $errors->first('unidade_id') : ''}}
                     
                     
                     <button type="submit" class="borda-preta">Cadastrar</button>
