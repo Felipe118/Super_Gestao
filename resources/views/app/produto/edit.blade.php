@@ -22,10 +22,11 @@
         <div class="informacao-pagina">
             
             <div style="width:30%; margin-left:auto; margin-right:auto;">
-                <form action="" method="POST">
+                <form action="{{route('produto.update', ['produto' => $produto->id])}}" method="POST">
                     @csrf
+                    @method('PUT')
 
-                    <input type="text" name="nome" placeholder="Nome"  value="{{ $produto->nome ?? old('nome') }}" class="borda-preta" id="">
+                     <input type="text" name="nome" placeholder="Nome"  value="{{ $produto->nome ?? old('nome') }}" class="borda-preta" id="">
                     {{$errors->has('nome') ? $errors->first('nome') : ''}}
                     
                     <input type="text" name="descricao" placeholder="Descrição" value="{{ $produto->descricao ?? old('descricao') }}" class="borda-preta" id="">
