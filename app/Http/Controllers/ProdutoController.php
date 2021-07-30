@@ -65,6 +65,8 @@ class ProdutoController extends Controller
                 'unidade_id' => 'exists:unidades,id',
 
             ];
+
+          
             $feedback = [
 
                 'required' => 'O campo :attribute deve ser preenchido',
