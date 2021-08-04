@@ -69,11 +69,19 @@
 
                     {{ $produtos->appends($request)->links() }}
                     <br>
-                    {{ $produtos->count() }} - Total de registros por página
+                    {{ $produtos->count() }} <!--- Total de registros por página-->
+                    {{ $produtos->total() }}
+                    {{ $produtos->firstItem() }}
+                    {{ $produtos->lastItem() }}
+                    <br>
+
+                    Exibindo {{$produtos->count()}} produto de {{ $produtos->total() }} (de  {{ $produtos->firstItem() }} a {{ $produtos->lastItem() }})
+                </div>
+
             </div>
 
         </div>
  
-    </div>
+   
 
 @endsection
