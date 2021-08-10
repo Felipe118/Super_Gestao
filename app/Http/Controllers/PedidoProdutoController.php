@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pedido;
+use App\PedidoProduto;
 use App\Produto;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class PedidoProdutoController extends Controller
     public function create(Pedido $pedido)
     {
         $produtos = Produto::all();
+       // $pedido->produtos; //eager loading
        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
     }
 
@@ -37,11 +39,18 @@ class PedidoProdutoController extends Controller
      */
     public function store(Request $request, Pedido $pedido)
     {
-        echo '<pre>';
-        print_r($pedido);
-        echo '</pre>';
-        print_r($request->all());
-        echo '<hr>';
+        $regras= ['produto_id' => 'exists:produtos,id'];
+
+        $feedback = ['porduto_id.exists' => 'O produto selecionado não existe'];
+        $request->validate($regras,$feedback);
+
+        $pedidoProduto = new PedidoProduto();
+
+        $pedidoProduto->pedido_id = $pedido->id;
+        $pedidoProduto->produto_id = $request->get('produto_id');
+        $pedidoProduto->save();
+        
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
 
     }
 
