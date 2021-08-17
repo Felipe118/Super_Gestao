@@ -1,7 +1,7 @@
 @if(isset($pedido->id))
 <form method="post" action="{{ route('pedido.update', ['pedido' => $pedido->id]) }}">
     @csrf
-    @method('PUT')
+    @method('PUT') 
 @else
 <form method="post" action="{{ route('pedido.store') }}">
     @csrf

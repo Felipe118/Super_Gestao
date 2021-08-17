@@ -30,6 +30,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Nome produto:</th>
+                            <th>Data de Inclusao do Pedido:</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,14 @@
                         <tr>
                             <td>{{$produto->id}}</td>
                             <td>{{$produto->nome }}</td>
+                            
+                            <td>
+                                <form id="form_{{$pedido->id}}_{{$produto->id}}" method="POST" action="{{route('pedido-produto.destroy', ['pedido' => $pedido->id, 'produto' => $produto->id])}}">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                                <a href="#" onclick="document.getElementById('form_{{$pedido->id}}_{{$produto->id}}').submit()">Excluir</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
