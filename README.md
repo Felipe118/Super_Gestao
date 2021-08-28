@@ -14,3 +14,11 @@
  <h4 align="center"> 
 	🚧  Super Gestão 🚀 Em construção...  🚧
 </h4>
+<hr>
+<h3>Sistema Feito para fins didáticos<h3>
+
+<img src="public/img/apresentacao.png">
+
+<h3>Tela de Login<h3>
+
+<img src="public/img/login.png">
